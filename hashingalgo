@@ -1,0 +1,280 @@
+
+package hashingalgo;
+
+import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+
+
+public class HashingAlgo {
+//Global encrypting variables
+    static String sample;
+    static String finalHash = "";
+    static Scanner skaner = new Scanner(System.in);
+
+//Main method
+    public static void main(String[] args) {
+        //ENCRYTPING<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+       System.out.println("Please Enter your Number: ");
+       sample = skaner.nextLine();
+       //levelOneHashing
+       levelOneHashing();
+       System.out.println("After 1st-layer hashing: " + finalHash);
+       //levelTwoHashing
+       levelTwoHashing();
+       System.out.println("After 2nd-layer hashing: " + finalHash);
+       //levelThreehashing
+       levelThreeHashing();
+       System.out.println("After 3rd-layer hashing: " + finalHash);
+       
+        //DECODING<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+       //levelOneDecoding
+       levelOneDecoding();
+       System.out.println("After 1st-level decoding: " + finalHash);
+       
+       //levelTwoDecoding
+       levelTwoDecoding();
+       System.out.println("After 2nd-level decoding: " + finalHash);
+       
+       //levelThreeDecoding
+       levelThreeDecoding();
+       System.out.println("Final Result of decoding: " + finalHash);
+       sample = ""; finalHash= "";
+    
+       main(args);
+       
+    }
+//End of Main method 
+    
+       public static void levelOneHashing(){
+       for (int c=0; c<=sample.length()-1;c++){
+               char flag = sample.charAt(c);
+               if(flag == '0'){
+                   String for0 = "DaZo";
+                   finalHash = finalHash.concat(for0);
+               }
+               if(flag == '1'){
+                   String for1 = "aNcn";
+                   finalHash = finalHash.concat(for1);
+               }
+               else if(flag == '2'){
+                   String for2 = "eVmB";
+                   finalHash = finalHash.concat(for2);
+               }
+               else if(flag == '3'){
+                   String for3 = "iQbp";
+                   finalHash = finalHash.concat(for3);
+               }
+               else if(flag == '4'){
+                   String for4 = "hSJc";
+                   finalHash = finalHash.concat(for4);
+               }
+               else if(flag == '5'){
+                   String for5 = "qRft";
+                   finalHash = finalHash.concat(for5);
+               }
+               else if(flag == '6'){
+                   String for6 = "uYwD";
+                   finalHash = finalHash.concat(for6);
+               }
+               else if(flag == '7'){
+                   String for7 = "yzeW";
+                   finalHash = finalHash.concat(for7);
+               }
+               else if(flag == '8'){
+                   String for8 = "BYxe";
+                   finalHash = finalHash.concat(for8);
+               }
+               else if(flag == '9'){
+                   String for9 = "fxhZ";
+                   finalHash = finalHash.concat(for9);
+               }
+               else if(flag == '.'){
+                   String forP = "dLtF";
+                   finalHash = finalHash.concat(forP);
+               }
+               else if(flag == ','){
+                   String forC = "cmNY";
+                   finalHash = finalHash.concat(forC);
+               }
+               else if(flag == ' '){
+                   String forS = "sBcG";
+                   finalHash = finalHash.concat(forS);
+               }
+                   
+           }
+       
+       }
+       public static void levelTwoHashing(){
+           
+         String flaggedHash = "";
+         int startBasePoint = 0;
+         int endBasePoint = 1;
+         
+         for(int i = 1; i<=finalHash.length()/2;i++){
+                 
+                 String CCatcher1 = Character.toString(finalHash.charAt(startBasePoint));
+                 String CCatcher2 = Character.toString(finalHash.charAt(endBasePoint));
+                 
+                 String Flagger = CCatcher1;
+                 CCatcher1 = CCatcher2;
+                 CCatcher2 = Flagger;
+                 
+                 flaggedHash = flaggedHash.concat(CCatcher1);
+                 flaggedHash = flaggedHash.concat(CCatcher2);
+                 
+             startBasePoint += 2;
+             endBasePoint += 2;
+             
+         }
+         finalHash = flaggedHash;
+       }
+       
+       public static void levelThreeHashing(){
+          
+          char[] Atom = {'a','b','c','d','e','f','g','h','i','j','k','l','m'};
+          char[] Uatom = {'A','B','C','D','E','F','G','H','I','J','K','L','M'};
+          for(int i = 0; i<=Atom.length-1; i++){
+          
+          if(finalHash.charAt(finalHash.length()-1) == Atom[i]){
+          String flaggedHash="";
+           for (int t =0; t<=finalHash.length()-1;t++){
+              char CharExt = finalHash.charAt(t);
+              flaggedHash = CharExt+flaggedHash;
+           }
+           finalHash =flaggedHash;
+           break;
+          }
+          else if(finalHash.charAt(finalHash.length()-1) == Uatom[i]){
+          String flaggedHash="";
+           for (int t =0; t<=finalHash.length()-1;t++){
+              char CharExt = finalHash.charAt(t);
+              flaggedHash = CharExt+flaggedHash;
+           }
+           finalHash =flaggedHash;
+           break;
+          }
+          
+          }
+          
+          
+       }
+       
+       public static void levelOneDecoding(){
+          
+          char[] Atom = {'a','b','c','d','e','f','g','h','i','j','k','l','m'};
+          char[] Uatom = {'A','B','C','D','E','F','G','H','I','J','K','L','M'};
+          for(int i = 0; i<=Atom.length-1; i++){
+          
+          if(finalHash.charAt(0) == Atom[i]){
+          String flaggedHash="";
+           for (int t =0; t<=finalHash.length()-1;t++){
+              char CharExt = finalHash.charAt(t);
+              flaggedHash = CharExt+flaggedHash;
+           }
+           finalHash =flaggedHash;
+           break;
+          }
+          else if(finalHash.charAt(0) == Uatom[i]){
+          String flaggedHash="";
+           for (int t =0; t<=finalHash.length()-1;t++){
+              char CharExt = finalHash.charAt(t);
+              flaggedHash = CharExt+flaggedHash;
+           }
+           finalHash =flaggedHash;
+           break;
+          }
+          
+          }
+       }
+       public static void levelTwoDecoding(){
+           
+         String flaggedHash = "";
+         int startBasePoint = 0;
+         int endBasePoint = 1;
+         
+         for(int i = 1; i<=finalHash.length()/2;i++){
+                 
+                 String CCatcher1 = Character.toString(finalHash.charAt(startBasePoint));
+                 String CCatcher2 = Character.toString(finalHash.charAt(endBasePoint));
+                 
+                 String Flagger = CCatcher1;
+                 CCatcher1 = CCatcher2;
+                 CCatcher2 = Flagger;
+                 
+                 flaggedHash = flaggedHash.concat(CCatcher1);
+                 flaggedHash = flaggedHash.concat(CCatcher2);
+                 
+             startBasePoint += 2;
+             endBasePoint += 2;
+             
+         }
+         finalHash = flaggedHash;
+       }
+       
+       public static void levelThreeDecoding(){
+       int startBasePoint = 0;
+       int endBasePoint = 3;
+       String decodeFlag = "";
+       String sbstrCatch = "";
+       
+       
+         for (int d = 1; d<= (finalHash.length()/4);d++){
+           for (int c = startBasePoint; c <= endBasePoint; c++){
+               
+               decodeFlag = decodeFlag.concat(Character.toString(finalHash.charAt(c)));
+               
+           }
+           
+           startBasePoint += 4;
+           endBasePoint += 4;
+           
+           if (decodeFlag.equals("DaZo")){
+               sbstrCatch = sbstrCatch.concat("0");
+           }
+           else if (decodeFlag.equals("aNcn"))
+           {
+               sbstrCatch = sbstrCatch.concat("1");
+           }
+           else if (decodeFlag.equals("eVmB")){
+               sbstrCatch = sbstrCatch.concat("2");
+           }
+           else if (decodeFlag.equals("iQbp")){
+               sbstrCatch = sbstrCatch.concat("3");
+           }
+           else if (decodeFlag.equals("hSJc")){
+               sbstrCatch = sbstrCatch.concat("4");
+           }
+           else if (decodeFlag.equals("aRft")){
+               sbstrCatch = sbstrCatch.concat("5");
+           }
+           else if (decodeFlag.equals("uYwD")){
+               sbstrCatch = sbstrCatch.concat("6");
+           }
+           else if (decodeFlag.equals("yzeW")){
+               sbstrCatch = sbstrCatch.concat("7");
+           }
+           else if (decodeFlag.equals("BYxe"))
+           {
+               sbstrCatch = sbstrCatch.concat("8");
+           }
+           else if (decodeFlag.equals("fxhZ")){
+               sbstrCatch = sbstrCatch.concat("9");
+           }
+           else if (decodeFlag.equals("dLtF")){
+               sbstrCatch = sbstrCatch.concat(".");
+           }
+           else if (decodeFlag.equals("cmNY")){
+               sbstrCatch = sbstrCatch.concat(",");
+           }
+           else if (decodeFlag.equals("sBcG")){
+               sbstrCatch = sbstrCatch.concat(" ");
+           }
+           decodeFlag = "";
+                         
+       }
+         finalHash = sbstrCatch;
+       }      
+
+}
+    
